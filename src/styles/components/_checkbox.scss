@@ -1,0 +1,7 @@
+.checkbox {
+    border: 2px solid darken($color: #d6d6d6, $amount: 50);
+    // border: 2px solid #d6d6d6;
+    &.selected {
+        background-color: #00cbcd;
+    }
+}

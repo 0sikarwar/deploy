@@ -1,0 +1,137 @@
+.bg-black {
+    background-color: #21272d;
+}
+.bg-green {
+    background: #00965A;
+}
+.bg-op5-green {
+    background-color: #00965A;
+    opacity: 0.5;
+}
+.bg-red {
+    background: #C82534;
+}
+.bg-white {
+    background-color: #fff;
+}
+.bg-op8-white {
+    background: rgba(255,255,255, 0.8);
+}
+.bg-light-black {
+    background-color: #2a3036;
+}
+.bg-gray {
+    background-color: #B1B1B1;
+}
+.bg-theme {
+    background-color: #00cbcd;
+}
+.bg-active-sidebar {
+    background-color: #1e3038;
+}
+
+.bg-success {
+    background: #34c632;
+}
+.bg-error {
+    background: #e15f6f;
+}
+.bg-lightest-gray {
+    background-color: #F1F1F1;
+}
+
+.bg-gray {
+    background-color: #787878;
+}
+.bg-lt-gray {
+    background-color: #F1F1F1;
+}
+.bg-lt-gray-2 {
+    background-color: #C1C3C4;
+}
+.bg-lt-gray-3 {
+    background-color: #FAFAFA;
+}
+.bg-white {
+    background-color: #fff;
+}
+
+
+.success-color {
+    color: #24a139;
+}
+.error-color {
+    color: #cb0d38;
+}
+
+.c-white {
+    color: #fff;
+}
+.c-error {
+    color: #d0021b;
+}
+.c-table-header {
+    color: #656565;
+}
+.box-shadow {
+    box-shadow: 2px 2px 2px  rgba(0, 0, 0, 0.25);
+}
+.c-theme {
+    color: #00cbcd;
+}
+
+.c-black {
+    color: #000000;
+}
+.c-red {
+    color: #C82534;
+}
+
+
+.c-lt-gray {
+    color: #B1B1B1;
+}
+.c-lt-gray-2 {
+    color: #F1F1F1;
+}
+.c-gray{
+    color: #787878;
+}
+
+
+.border-table-header {
+    border-top: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+}
+
+.border-bottom-gray {
+    border-bottom: 1px solid #ececec;
+}
+
+.bg-theme.react-toggle--checked .react-toggle-track {
+    background-color: #787878;
+}
+.bg-theme.react-toggle.hide-check-cross {
+    // background-color: #787878;
+    .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+        background-color: #787878;
+    }
+    .react-toggle-track-x {
+        display: none;
+    }
+    .react-toggle-track-check {
+        display: none;
+    }
+}
+.border-gray {
+    border: 1px solid #ececec;
+}
+.border-gray-dashed {
+    border: 3px dashed #B1B1B1;
+}
+.border-right {
+    border-right: 1px solid #B1B1B1;
+}
+.border-bottom-thick {
+    border-bottom: 1px solid #787878;
+}

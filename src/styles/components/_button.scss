@@ -1,0 +1,39 @@
+.button {
+    border: none; 
+    padding: 8px 16px;
+    border-radius: 2px;
+    font-size: 16px;
+    cursor: pointer;
+    &.primary {
+        background-color: #00965A;
+        color: #fff;
+        font-weight: 700;
+    }
+    &.secondary {
+        background-color: #e6e9ec;
+        padding: 8px 16px;
+        color: darken($color: #d4d7d9, $amount: 50);
+        font-weight: 500;
+        font-size: 14px;
+    }
+    &.modalSave {
+        background-color: #00965A;
+        color: #fff;
+        padding: 8px 16px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+    }
+    &.modalCancel {
+        background-color: #C82534;
+        color: #fff;
+        padding: 8px 16px;
+        font-weight: 700;
+    }
+    &.saveButton {
+        background-color: #787878;
+        color: #fff;
+        padding: 8px 16px;
+        font-weight: 700;
+    }
+}
