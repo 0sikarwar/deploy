@@ -69,7 +69,7 @@ const LoginPage = (props) => {
     resetLoginUser();
   };
   return (
-    <div className="pr-16 pl-16 wt-100p hCenter p-relative max-wt-500">
+    <div className="pr-16 pl-16 wt-90p hCenter p-relative max-wt-500">
       <div className="flex flex-middle flex-between">
         <h2>Login</h2>
         <Link to="/register" onClick={resetLogin} className="btn btn-link">

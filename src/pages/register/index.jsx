@@ -85,7 +85,7 @@ const RegisterPage = (props) => {
     }
   };
   return (
-    <div className="pr-16 pl-16 wt-100p hCenter p-relative max-wt-500">
+    <div className="pr-16 pl-16 wt-90p hCenter p-relative max-wt-500">
       <div className="flex flex-middle flex-between">
         <h2>Register</h2>
         <Link to="/login" className="btn btn-link">
