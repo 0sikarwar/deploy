@@ -23,7 +23,7 @@
     "eject": "react-scripts eject",
     "dev": "react-scripts start",
     "server": "PORT=8080 node server",
-    "predeploy":"yarn run build",
+    "predeploy":"REACT_APP_PUBLIC_URL=https://api-server-gs.herokuapp.com yarn run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
