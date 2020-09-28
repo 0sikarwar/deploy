@@ -19,17 +19,17 @@ const Home = () => {
       <div className="header">
         {!loginStatus ? (
           <>
-            <Link className="pl-16 pr-16" to="/login">
+            <Link className="pl-16 pr-16 c-light-blue decoration-none" to="/login">
               Login
             </Link>
-            <Link className="pr-16" to="/register">
+            <Link className="pr-16 c-light-blue decoration-none" to="/register">
               Register
             </Link>
           </>
         ) : (
           <>
             <div className="pl-16 pr-16">{userDetails.email}</div>
-            <div className="pr-16 c-pointer c-link" onClick={handleLogout}>
+            <div className="pr-16 c-pointer c-light-blue" onClick={handleLogout}>
               Logout
             </div>
           </>

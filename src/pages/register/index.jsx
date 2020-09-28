@@ -88,7 +88,7 @@ const RegisterPage = (props) => {
     <div className="pr-16 pl-16 wt-90p hCenter p-relative max-wt-500">
       <div className="flex flex-middle flex-between">
         <h2>Register</h2>
-        <Link to="/login" className="btn btn-link">
+        <Link to="/login" className="btn btn-link decoration-none">
           {" "}
           LogIn
         </Link>
@@ -142,7 +142,7 @@ const RegisterPage = (props) => {
           />
         <div className="mb-16">
           <button className="btn btn-primary">Register</button>
-          <Link to="/" className="btn btn-link">
+          <Link to="/" className="btn btn-link decoration-none">
             Cancel
           </Link>
         </div>

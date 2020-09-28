@@ -72,7 +72,7 @@ const LoginPage = (props) => {
     <div className="pr-16 pl-16 wt-90p hCenter p-relative max-wt-500">
       <div className="flex flex-middle flex-between">
         <h2>Login</h2>
-        <Link to="/register" onClick={resetLogin} className="btn btn-link">
+        <Link to="/register" onClick={resetLogin} className="btn btn-link decoration-none">
           Register
         </Link>
       </div>
@@ -104,7 +104,7 @@ const LoginPage = (props) => {
           />
         <div className="mb-16">
           <button className="btn btn-primary">Login</button>
-          <Link to="/" className="btn btn-link">
+          <Link to="/" className="btn btn-link decoration-none">
             cancel
           </Link>
         </div>

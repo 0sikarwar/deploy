@@ -7,9 +7,6 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@testing-library/user-event": "^12.1.6",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mysql": "^2.18.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -17,13 +14,11 @@
     "react-scripts": "^3.4.3"
   },
   "scripts": {
-    "start": "concurrently --kill-others \"yarn run dev\" \"yarn run server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "react-scripts start",
-    "server": "PORT=8080 node server",
-    "predeploy":"REACT_APP_PUBLIC_URL=https://api-server-gs.herokuapp.com yarn run build",
+    "start": "react-scripts start",
+    "predeploy":"REACT_APP_PUBLIC_URL=https://api-server-node.herokuapp.com yarn run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
