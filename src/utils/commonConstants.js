@@ -1,5 +1,6 @@
 export const LOGIN_API_URL = `${process.env.REACT_APP_PUBLIC_URL}/login`;
 export const REGISTER_API_URL = `${process.env.REACT_APP_PUBLIC_URL}/register`;
+export const FORGOT_PASS_API_URL = `${process.env.REACT_APP_PUBLIC_URL}/forgotpassword`;
 
 export const HTTP_STATUS_FOR_SUCCESS = "SUCCESS";
 export const LOGIN_RESPONSE_STATUS_FOR_SUCCESS = "SUCCESS";

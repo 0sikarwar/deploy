@@ -41,9 +41,16 @@ input {
 @import "components/TootTip";
 @import "components/Modal";
 @import "components/Header";
-
+@import "components/Pageloader";
+@import "components/PwaModal";
 
 .hCenter {
   left: 50%;
   transform: translateX(-50%);
+}
+.pt-0 {
+  padding-top: 0px;
+}
+.pb-0 {
+  padding-bottom: 0px;
 }

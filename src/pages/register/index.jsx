@@ -1,15 +1,13 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import {
-  getRegisterUserSuccess
-} from "../../actions/register";
+import { getRegisterUserSuccess } from "../../actions/register";
 import { validatePassword } from "../../utils";
-import { registerUser } from "../../utils/userHelper"
-import Input from "../../components/input"
-import Store from '../../utils/store'
-
+import { registerUser } from "../../utils/userHelper";
+import Input from "../../components/input";
+import Store from "../../utils/store";
+import Pageloader from "../../components/pageloader"
 const RegisterPage = (props) => {
-  const [, dispatch] = useContext(Store)
+  const [, dispatch] = useContext(Store);
   const [userDetails, setUserDetails] = useState({
     firstName: "",
     lastName: "",
@@ -18,13 +16,15 @@ const RegisterPage = (props) => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [strengthPass, setStrengthPass] = useState("");
-  const [registerResp, setRegisterResp] = useState(null)
-  const [validateObj, setValidatObj]= useState({
-    firstName: false ,
-    lastName: false ,
-    loginId: false ,
-    password: false 
-  })
+  const [registerResp, setRegisterResp] = useState(null);
+  const [validateObj, setValidatObj] = useState({
+    firstName: false,
+    lastName: false,
+    loginId: false,
+    password: false,
+  });
+  const [loading, setLoading] = useState(false);
+
   const passwordRef = useRef(null);
 
   useEffect(() => {
@@ -38,12 +38,12 @@ const RegisterPage = (props) => {
     }
   }, [props.history]);
 
-  useEffect(()=>{
-    if(registerResp) {
-      dispatch(getRegisterUserSuccess(registerResp))
+  useEffect(() => {
+    if (registerResp) {
+      dispatch(getRegisterUserSuccess(registerResp));
       props.history.push("/");
-    } 
-  },[registerResp])
+    }
+  }, [registerResp]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -55,7 +55,7 @@ const RegisterPage = (props) => {
       );
       setStrengthPass(strengthPass);
     }
-    setValidatObj({...validateObj, [name]:false})
+    setValidatObj({ ...validateObj, [name]: false });
     setUserDetails({ ...userDetails, [name]: value });
     submitted && setSubmitted(false);
     console.log(strengthPass);
@@ -70,31 +70,30 @@ const RegisterPage = (props) => {
     event.preventDefault();
     setSubmitted(true);
     setValidatObj({
-      firstName: !userDetails.firstName ,
-    lastName: false ,
-    loginId: !userDetails.loginId ,
-    password: !userDetails.password 
-    })
+      firstName: !userDetails.firstName,
+      lastName: false,
+      loginId: !userDetails.loginId,
+      password: !userDetails.password,
+    });
     if (userDetails.firstName && userDetails.loginId && userDetails.password) {
+      setLoading(true);
       const userData = { userDocument: userDetails };
-      registerUser(
-        userData,
-        setRegisterResp,
-        setValidatObj
-      );
+      registerUser(userData, setRegisterResp, setValidatObj, setLoading);
     }
   };
   return (
-    <div className="pr-16 pl-16 wt-90p hCenter p-relative max-wt-500">
-      <div className="flex flex-middle flex-between">
-        <h2>Register</h2>
-        <Link to="/login" className="btn btn-link decoration-none">
-          {" "}
-          LogIn
-        </Link>
-      </div>
+    <>
+      {loading && <Pageloader className="o-70" />}
+      <div className="pr-16 pl-16 wt-90p hCenter p-relative max-wt-500">
+        <div className="flex flex-middle flex-between">
+          <h2>Register</h2>
+          <Link to="/login" className="btn btn-link decoration-none">
+            {" "}
+            LogIn
+          </Link>
+        </div>
 
-      <form name="form" onSubmit={handleSubmit}>
+        <form name="form" onSubmit={handleSubmit}>
           <Input
             label="First Name"
             type="text"
@@ -124,7 +123,11 @@ const RegisterPage = (props) => {
             value={userDetails.loginId}
             onChange={handleChange}
             hasError={validateObj.loginId}
-            errMsg={submitted && !userDetails.loginId?"Email id is required":"Already have an id login now"}
+            errMsg={
+              submitted && !userDetails.loginId
+                ? "Email id is required"
+                : "Already have an id login now"
+            }
           />
           <Input
             ref={passwordRef}
@@ -140,14 +143,15 @@ const RegisterPage = (props) => {
             errMsg="Password is required"
             strengthPass={strengthPass}
           />
-        <div className="mb-16">
-          <button className="btn btn-primary">Register</button>
-          <Link to="/" className="btn btn-link decoration-none">
-            Cancel
-          </Link>
-        </div>
-      </form>
-    </div>
+          <div className="mb-16">
+            <button className="btn btn-primary">Register</button>
+            <Link to="/" className="btn btn-link decoration-none">
+              Cancel
+            </Link>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 
