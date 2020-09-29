@@ -93,7 +93,7 @@ const ResetPass = (props) => {
           <PwaModal
             title={"Password changed"}
             type="success"
-            onPrimaryAction={()=>{props.history.push("/");}}
+            onPrimaryAction={()=>{props.history.push("/login");}}
             primaryButton="OK"
             message={`Password changed Successfully Login now`}
           />

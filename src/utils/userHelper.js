@@ -92,7 +92,6 @@ export async function resetPass(
     const data = await postCall(RESET_PASS_API_URL, userData);
     setLoading(false)
     const { loginResponseStatus } = data || {};
-    debugger
     if (loginResponseStatus === HTTP_STATUS_FOR_SUCCESS) {
       setResetPassResp(data.userData);
     }else if (loginResponseStatus === RESET_PASS_RESPONSE_STATUS_FOR_WRONG_URL) {
