@@ -8,7 +8,7 @@ import Store from "../../utils/store";
 import Pageloader from "../../components/pageloader";
 import PwaModal from "../../components/PwaModal";
 import Overlay from "../../components/Overlay";
-import {path} from "../../utils"
+import { path } from "../../utils";
 
 const ResetPass = (props) => {
   const [, dispatch] = useContext(Store);
@@ -69,36 +69,46 @@ const ResetPass = (props) => {
       password: !userDetails.password,
       password2: userDetails.password !== userDetails.password2,
     });
-    if (userDetails.password && userDetails.password2 ) {
+    if (userDetails.password && userDetails.password === userDetails.password2) {
       setLoading(true);
-      const userData = { userDocument: {password: userDetails.password, token:path(["match","params","token"], props)} };
+      const userData = {
+        userDocument: {
+          password: userDetails.password,
+          token: path(["match", "params", "token"], props),
+        },
+      };
       resetPass(userData, setResetPassResp, setValidatObj, setLoading);
     }
   };
   return (
     <>
       {loading && <Pageloader className="o-70" />}
-      {validateObj.wrongUrl && 
-      <Overlay>
+      {validateObj.wrongUrl && (
+        <Overlay>
           <PwaModal
             title={"Wrong url"}
             type="Error"
-            onPrimaryAction={()=>{props.history.push("/");}}
+            onPrimaryAction={() => {
+              props.history.push("/");
+            }}
             primaryButton="OK"
             message={`You hit the Wrong url. Go to Home Page`}
           />
-      </Overlay>}
-      { resetPassResp && 
+        </Overlay>
+      )}
+      {resetPassResp && (
         <Overlay>
           <PwaModal
             title={"Password changed"}
             type="success"
-            onPrimaryAction={()=>{props.history.push("/login");}}
+            onPrimaryAction={() => {
+              props.history.push("/login");
+            }}
             primaryButton="OK"
             message={`Password changed Successfully Login now`}
           />
-      </Overlay>
-      }
+        </Overlay>
+      )}
       <div className="pr-16 pl-16 wt-90p hCenter p-relative max-wt-500">
         <div className="flex flex-middle flex-between">
           <h2>Reset Password</h2>
@@ -134,7 +144,11 @@ const ResetPass = (props) => {
             onChange={handleChange}
             hasError={validateObj.password2}
             hideStrengthBar={true}
-            errMsg={userDetails.password2?"Please enter the same password as first one.":"This field is required."}
+            errMsg={
+              userDetails.password2
+                ? "Please enter the same password as first one."
+                : "This field is required."
+            }
           />
           <div className="mb-16">
             <button className="btn btn-primary">Reset</button>
