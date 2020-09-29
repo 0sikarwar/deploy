@@ -65,12 +65,19 @@ const LoginPage = (props) => {
   };
   const handleForgotPass = () => {
     setLoading(true);
+    setSubmitted(true);
+    setValidatObj({
+      username: !userDetails.username,
+    });
     const userData = {
       userDocument: { loginId: userDetails.username },
     };
     forgotPass(userData, setResetResp, setValidatObj, setLoading);
   };
-
+  const handelModalClose = () => {
+    setResetResp(null);
+    setSubmitted(false);
+  };
   const resetLogin = () => {
     resetLoginUser();
   };
@@ -78,18 +85,14 @@ const LoginPage = (props) => {
     <>
       {loading && <Pageloader className="o-70" />}
       {!loading && resetResp && (
-          <Overlay>
-
-        <PwaModal
-          title={"Mail sent"}
-          onPrimaryAction={() => {
-            setResetResp(null);
-          }}
-          primaryButton="ok"
-          message={`An email sent to ${resetResp.email} with reset password link`}
-        />
-          </Overlay>
-
+        <Overlay>
+          <PwaModal
+            title={"Mail sent"}
+            onPrimaryAction={handelModalClose}
+            primaryButton="ok"
+            message={`An email sent to ${resetResp.email} with reset password link`}
+          />
+        </Overlay>
       )}
       <div className="pr-16 pl-16 wt-90p hCenter p-relative max-wt-500">
         <div className="flex flex-middle flex-between">

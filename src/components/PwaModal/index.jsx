@@ -1,4 +1,4 @@
-import React, { If } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from "classnames";
 
@@ -45,6 +45,16 @@ const PwaModal = (props) => {
     )
   }
 
+  PwaModal.propTypes = {
+    onPrimaryAction: PropTypes.func,
+    onSecondaryAction: PropTypes.func,
+    title: PropTypes.string,
+    message: PropTypes.string,
+    type: PropTypes.oneOf(['info', 'warning', 'error', 'renderProp', 'caution', 'success','failed']),
+    primaryButton: PropTypes.string,
+    bottom: PropTypes.bool,
+    secondaryButton: PropTypes.string,
+  }
 PwaModal.defaultProps = {
   type: 'info',
   onPrimaryAction: () => {},

@@ -5,6 +5,7 @@ import "./styles/index.scss";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import HomePage from "./pages/home";
+import ResetPass from "./pages/resetPass";
 import {
 	getLoginUserSuccess
 } from "./actions/login";
@@ -28,6 +29,7 @@ const Routes =() => {
 			<Route exact path="/" component={HomePage} />
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/register" component={Register} />
+			<Route exact path="/resetPass/:token" component={ResetPass} />
 		</Switch>
 	);
 };

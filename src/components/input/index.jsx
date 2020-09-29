@@ -37,7 +37,7 @@ const Input = (props)=>{
 			{hasError && (
 				<div className="help-block">{errMsg}</div>
 			)}
-			{!hideStrengthBar && name === "password" && value && (
+			{!hideStrengthBar && type === "password" && value && (
 				<div className="strengthBarContainer mt-4">
 					<div className={`strengthBar ${strengthPass} br-20`}></div>
 				</div>
