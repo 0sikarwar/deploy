@@ -8,6 +8,7 @@ import Pageloader from "../../components/pageloader";
 import Store from "../../utils/store";
 import PwaModal from "../../components/PwaModal";
 import Overlay from "../../components/Overlay";
+import Toast from "../../components/Toast";
 
 const LoginPage = (props) => {
   const [, dispatch] = useContext(Store);
@@ -23,6 +24,7 @@ const LoginPage = (props) => {
   });
   const [loginResp, setLoginResp] = useState(null);
   const [resetResp, setResetResp] = useState(null);
+  const [toastMsg, setToastMsg] = useState("");
   const passwordRef = useRef(null);
   const userNameRef = useRef(null);
   useEffect(() => {
@@ -60,7 +62,7 @@ const LoginPage = (props) => {
       const userData = {
         userDocument: { loginId: username, password: password },
       };
-      loginUser(userData, setLoginResp, setValidatObj, setLoading);
+      loginUser(userData, setLoginResp, setValidatObj, setLoading, setToastMsg);
     }
   };
   const handleForgotPass = () => {
@@ -72,7 +74,7 @@ const LoginPage = (props) => {
     const userData = {
       userDocument: { loginId: userDetails.username },
     };
-    forgotPass(userData, setResetResp, setValidatObj, setLoading);
+    forgotPass(userData, setResetResp, setValidatObj, setLoading, setToastMsg);
   };
   const handelModalClose = () => {
     setResetResp(null);
@@ -152,6 +154,16 @@ const LoginPage = (props) => {
           </div>
         </form>
       </div>
+      {toastMsg && (
+        <Toast
+          message={toastMsg}
+          closeBtn={true}
+          onClose={() => {
+            setToastMsg("");
+          }}
+          error
+        />
+      )}
     </>
   );
 };

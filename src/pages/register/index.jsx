@@ -5,7 +5,9 @@ import { validatePassword } from "../../utils";
 import { registerUser } from "../../utils/userHelper";
 import Input from "../../components/input";
 import Store from "../../utils/store";
-import Pageloader from "../../components/pageloader"
+import Pageloader from "../../components/pageloader";
+import Toast from "../../components/Toast";
+
 const RegisterPage = (props) => {
   const [, dispatch] = useContext(Store);
   const [userDetails, setUserDetails] = useState({
@@ -17,6 +19,7 @@ const RegisterPage = (props) => {
   const [submitted, setSubmitted] = useState(false);
   const [strengthPass, setStrengthPass] = useState("");
   const [registerResp, setRegisterResp] = useState(null);
+  const [toastMsg, setToastMsg] = useState("");
   const [validateObj, setValidatObj] = useState({
     firstName: false,
     lastName: false,
@@ -78,7 +81,13 @@ const RegisterPage = (props) => {
     if (userDetails.firstName && userDetails.loginId && userDetails.password) {
       setLoading(true);
       const userData = { userDocument: userDetails };
-      registerUser(userData, setRegisterResp, setValidatObj, setLoading);
+      registerUser(
+        userData,
+        setRegisterResp,
+        setValidatObj,
+        setLoading,
+        setToastMsg
+      );
     }
   };
   return (
@@ -151,6 +160,16 @@ const RegisterPage = (props) => {
           </div>
         </form>
       </div>
+      {toastMsg && (
+        <Toast
+          message={toastMsg}
+          closeBtn={true}
+          onClose={() => {
+            setToastMsg("");
+          }}
+          error
+        />
+      )}
     </>
   );
 };

@@ -16,7 +16,7 @@ const PwaModal = (props) => {
     )
     return (
       <>
-      <div className={"PwaModal " + (bottom ? "w-100p p-absolute b-0 PwaModal__bottom " : "") + classes}>
+      <div className={"PwaModal " + (bottom ? "wt-100p p-absolute b-0 PwaModal__bottom " : "") + classes}>
         <div className={"PwaModal__content " + (type === 'renderProp' ?  'pt-0 pb-0 pl-0 pr-0' : '')} >
           {type !== 'renderProp'?
             <h1 className="PwaModal__heading">{props.title}</h1>

@@ -11,6 +11,9 @@
     .pr-#{$i*4}  {
         padding-right:#{$i*4}px;
     }
+    .p-#{$i*4}  {
+        padding:#{$i*4}px;
+    }
 }
 
 @for $i from 1 through 20 {

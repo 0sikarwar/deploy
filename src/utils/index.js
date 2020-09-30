@@ -32,3 +32,9 @@ export const path = (p, o) => {
 	};
 	return p.reduce(reducerFunction, o);
 };
+
+export const normalizeSize = size => {
+	if (typeof size === "number") return `${size}px`;
+	return `${size}`;
+  };
+

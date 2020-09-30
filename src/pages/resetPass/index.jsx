@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { getRegisterUserSuccess } from "../../actions/register";
 import { validatePassword } from "../../utils";
 import { resetPass } from "../../utils/userHelper";
 import Input from "../../components/input";
@@ -9,6 +8,7 @@ import Pageloader from "../../components/pageloader";
 import PwaModal from "../../components/PwaModal";
 import Overlay from "../../components/Overlay";
 import { path } from "../../utils";
+import Toast from "../../components/Toast";
 
 const ResetPass = (props) => {
   const [, dispatch] = useContext(Store);
@@ -24,7 +24,7 @@ const ResetPass = (props) => {
     password2: false,
   });
   const [loading, setLoading] = useState(false);
-
+  const [toastMsg, setToastMsg] = useState("");
   const passwordRef = useRef(null);
 
   useEffect(() => {
@@ -37,13 +37,6 @@ const ResetPass = (props) => {
       props.history.push("/");
     }
   }, [props.history]);
-
-  // useEffect(() => {
-  //   if (registerResp) {
-  //     dispatch(getRegisterUserSuccess(registerResp));
-  //     props.history.push("/");
-  //   }
-  // }, [registerResp]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -69,7 +62,10 @@ const ResetPass = (props) => {
       password: !userDetails.password,
       password2: userDetails.password !== userDetails.password2,
     });
-    if (userDetails.password && userDetails.password === userDetails.password2) {
+    if (
+      userDetails.password &&
+      userDetails.password === userDetails.password2
+    ) {
       setLoading(true);
       const userData = {
         userDocument: {
@@ -77,7 +73,13 @@ const ResetPass = (props) => {
           token: path(["match", "params", "token"], props),
         },
       };
-      resetPass(userData, setResetPassResp, setValidatObj, setLoading);
+      resetPass(
+        userData,
+        setResetPassResp,
+        setValidatObj,
+        setLoading,
+        setToastMsg
+      );
     }
   };
   return (
@@ -155,6 +157,16 @@ const ResetPass = (props) => {
           </div>
         </form>
       </div>
+      {toastMsg && (
+        <Toast
+          message={toastMsg}
+          closeBtn={true}
+          onClose={() => {
+            setToastMsg("");
+          }}
+          error
+        />
+      )}
     </>
   );
 };
