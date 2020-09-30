@@ -1,40 +1,14 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
 import Store from "../../utils/store";
-import { resetLoginUser } from "../../actions/login";
+import Header from "../../components/header";
 const Home = () => {
-  const [appStore, dispatch] = useContext(Store);
+  const [appStore] = useContext(Store);
   const {
     user: { loginStatus, data: userDetails },
   } = appStore;
-  const handleLogout = () => {
-    if (typeof Storage !== "undefined") {
-      sessionStorage.removeItem("userData");
-    }
-    dispatch(resetLoginUser());
-  };
-  console.log(appStore);
   return (
     <>
-      <div className="header">
-        {!loginStatus ? (
-          <>
-            <Link className="pl-16 pr-16 c-light-blue decoration-none" to="/login">
-              Login
-            </Link>
-            <Link className="pr-16 c-light-blue decoration-none" to="/register">
-              Register
-            </Link>
-          </>
-        ) : (
-          <>
-            <div className="pl-16 pr-16">{userDetails.email}</div>
-            <div className="pr-16 c-pointer c-light-blue" onClick={handleLogout}>
-              Logout
-            </div>
-          </>
-        )}
-      </div>
+      <Header />
       <div className="flex flex-center">
         <h1>
           Hello{" "}
@@ -43,6 +17,7 @@ const Home = () => {
             : "anonymous"}
         </h1>
       </div>
+      <h2 className="success-color t-center">you are a verified user</h2>
     </>
   );
 };
