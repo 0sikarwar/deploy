@@ -2,23 +2,25 @@
   "name": "paper-xerox",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://0sikarwar.github.io/deploy",
+  "homepage": "https://0sikarwar.github.io/deploy",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@testing-library/user-event": "^12.1.6",
+    "element-class": "^0.2.2",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.3"
+    "react-scripts": "^3.4.3",
+    "react-transition-group": "^4.4.1"
   },
   "scripts": {
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
-    "predeploy":"REACT_APP_PUBLIC_URL=https://api-server-node.herokuapp.com yarn run build",
+    "predeploy": "REACT_APP_PUBLIC_URL=https://api-server-node.herokuapp.com yarn run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {

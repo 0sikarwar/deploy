@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { getRegisterUserSuccess } from "../../actions/register";
-import { validatePassword } from "../../utils";
+import { checkMobileDevice, validatePassword } from "../../utils";
 import { registerUser } from "../../utils/userHelper";
 import Input from "../../components/input";
 import Store from "../../utils/store";
@@ -15,6 +15,7 @@ const RegisterPage = (props) => {
     lastName: "",
     loginId: "",
     password: "",
+    password2: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [strengthPass, setStrengthPass] = useState("");
@@ -25,6 +26,7 @@ const RegisterPage = (props) => {
     lastName: false,
     loginId: false,
     password: false,
+    password2: false,
   });
   const [loading, setLoading] = useState(false);
 
@@ -77,8 +79,14 @@ const RegisterPage = (props) => {
       lastName: false,
       loginId: !userDetails.loginId,
       password: !userDetails.password,
+      password2: userDetails.password !== userDetails.password2,
     });
-    if (userDetails.firstName && userDetails.loginId && userDetails.password) {
+    if (
+      userDetails.firstName &&
+      userDetails.loginId &&
+      userDetails.password &&
+      userDetails.password === userDetails.password2
+    ) {
       setLoading(true);
       const userData = { userDocument: userDetails };
       registerUser(
@@ -96,33 +104,39 @@ const RegisterPage = (props) => {
       <div className="pr-16 pl-16 wt-90p hCenter p-relative max-wt-500">
         <div className="flex flex-middle flex-between">
           <h2>Register</h2>
-          <Link to="/login" className="btn btn-link decoration-none">
-            {" "}
+          <div
+            className="btn btn-link decoration-none c-pointer"
+            onClick={() => {
+              props.changeEntryPoint("login");
+            }}
+          >
             LogIn
-          </Link>
+          </div>
         </div>
 
         <form name="form" onSubmit={handleSubmit}>
-          <Input
-            label="First Name"
-            type="text"
-            inputContainerClass="mb-16"
-            className="form-input"
-            name="firstName"
-            value={userDetails.firstName}
-            onChange={handleChange}
-            hasError={validateObj.firstName}
-            errMsg="First Name is required"
-          />
-          <Input
-            label="Last Name"
-            type="text"
-            inputContainerClass="mb-16"
-            className="form-input"
-            name="lastName"
-            value={userDetails.lastName}
-            onChange={handleChange}
-          />
+          <div className={checkMobileDevice() ? "" : "flex flex-around"}>
+            <Input
+              label="First Name"
+              type="text"
+              inputContainerClass="mb-16"
+              className="form-input"
+              name="firstName"
+              value={userDetails.firstName}
+              onChange={handleChange}
+              hasError={validateObj.firstName}
+              errMsg="First Name is required"
+            />
+            <Input
+              label="Last Name"
+              type="text"
+              inputContainerClass="mb-16"
+              className="form-input"
+              name="lastName"
+              value={userDetails.lastName}
+              onChange={handleChange}
+            />
+          </div>
           <Input
             label="Email Id"
             type="email"
@@ -152,23 +166,46 @@ const RegisterPage = (props) => {
             errMsg="Password is required"
             strengthPass={strengthPass}
           />
+          <Input
+            label="Confirm Password"
+            type="password"
+            inputContainerClass="mb-16"
+            className="form-input"
+            name="password2"
+            value={userDetails.password2}
+            onChange={handleChange}
+            hasError={validateObj.password2}
+            hideStrengthBar={true}
+            errMsg={
+              userDetails.password2
+                ? "Please enter the same password as first one."
+                : "This field is required."
+            }
+          />
           <div className="mb-16">
             <button className="btn btn-primary">Register</button>
-            <Link to="/" className="btn btn-link decoration-none">
+            <div
+              onClick={() => {
+                props.changeEntryPoint(null);
+              }}
+              className="btn btn-link decoration-none"
+            >
               Cancel
-            </Link>
+            </div>
           </div>
         </form>
       </div>
       {toastMsg && (
-        <Toast
-          message={toastMsg}
-          closeBtn={true}
-          onClose={() => {
-            setToastMsg("");
-          }}
-          error
-        />
+        <div className="slide-up">
+          <Toast
+            message={toastMsg}
+            closeBtn={true}
+            onClose={() => {
+              setToastMsg("");
+            }}
+            error
+          />
+        </div>
       )}
     </>
   );

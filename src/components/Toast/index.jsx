@@ -8,7 +8,7 @@ import Truncate from './Truncate'
 const Toast = ({className, ctaText, message, error, onCtaClick, closeBtn, onClose}) => {
   const [close, setClose] = useState(false)
   const toastClassName = classNames(
-    'wt-90p p-16 br-4 flex flex-middle flex-between elevation-3 float-r mr-12 max-wt-500 z-10', {
+    'wt-90p p-16 br-4 flex flex-middle flex-between elevation-3 m-auto max-wt-500 z-10', {
       'bg-red' : error === true,
       'bg-light-black' : !error
     },

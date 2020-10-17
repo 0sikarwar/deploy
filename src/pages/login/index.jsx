@@ -82,6 +82,7 @@ const LoginPage = (props) => {
   };
   const resetLogin = () => {
     resetLoginUser();
+    props.changeEntryPoint("register");
   };
   return (
     <>
@@ -99,13 +100,12 @@ const LoginPage = (props) => {
       <div className="pr-16 pl-16 wt-90p hCenter p-relative max-wt-500">
         <div className="flex flex-middle flex-between">
           <h2>Login</h2>
-          <Link
-            to="/register"
+          <div
             onClick={resetLogin}
-            className="btn btn-link decoration-none"
+            className="btn btn-link decoration-none c-pointer"
           >
             Register
-          </Link>
+          </div>
         </div>
         <form name="form" onSubmit={handleSubmit}>
           <Input
@@ -148,21 +148,28 @@ const LoginPage = (props) => {
           </div>
           <div className="mb-16">
             <button className="btn btn-primary">Login</button>
-            <Link to="/" className="btn btn-link decoration-none">
+            <div
+              onClick={() => {
+                props.changeEntryPoint(null);
+              }}
+              className="btn btn-link decoration-none"
+            >
               cancel
-            </Link>
+            </div>
           </div>
         </form>
       </div>
       {toastMsg && (
-        <Toast
-          message={toastMsg}
-          closeBtn={true}
-          onClose={() => {
-            setToastMsg("");
-          }}
-          error
-        />
+        <div className="slide-up">
+          <Toast
+            message={toastMsg}
+            closeBtn={true}
+            onClose={() => {
+              setToastMsg("");
+            }}
+            error
+          />
+        </div>
       )}
     </>
   );

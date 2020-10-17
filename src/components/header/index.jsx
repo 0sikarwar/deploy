@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Store from "../../utils/store";
 import { resetLoginUser } from "../../actions/login";
 
-const Header = () => {
+const Header = (props) => {
   const [appStore, dispatch] = useContext(Store);
   const {
     user: { loginStatus, data: userDetails },
@@ -15,24 +15,34 @@ const Header = () => {
     }
     dispatch(resetLoginUser());
   };
+  const handleEntriesClick = (type) => {
+    props.handleEntriesClick(type);
+  };
   return (
     <div className="header">
       {!loginStatus ? (
         <>
-          <Link
-            className="pl-16 pr-16 c-light-blue decoration-none"
-            to="/login"
+          <div
+            className="pl-16 pr-16 c-light-blue decoration-none c-pointer"
+            onClick={() => {
+              handleEntriesClick("login");
+            }}
           >
             Login
-          </Link>
-          <Link className="pr-16 c-light-blue decoration-none" to="/register">
+          </div>
+          <div
+            className="pr-16 c-light-blue decoration-none c-pointer"
+            onClick={() => {
+              handleEntriesClick("register");
+            }}
+          >
             Register
-          </Link>
+          </div>
         </>
       ) : (
         <>
           <div className="pl-16 pr-16">{userDetails.email}</div>
-          <div className="pr-16 c-pointer c-light-blue" onClick={handleLogout}>
+          <div className="pr-16 c-pointer c-light-blue c-pointer" onClick={handleLogout}>
             Logout
           </div>
         </>

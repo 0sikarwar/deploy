@@ -1,23 +1,10 @@
-import React, { useContext } from "react";
-import Store from "../../utils/store";
-import Header from "../../components/header";
+import React from "react";
 
 const DummyHome = () => {
-  const [appStore] = useContext(Store);
-  const {
-    user: { loginStatus, data: userDetails },
-  } = appStore;
   return (
-   <> 
-      <Header />
-   <div className="flex flex-center">
-      <h1>
-        Hello{" "}
-        {loginStatus
-          ? userDetails.firstName + " " + userDetails.lastName
-          : "anonymous"}
-      </h1>
-    </div></>
+    <>
+      <h1>Contact Administrator</h1>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');body {
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+body {
   margin: 0;
-  font-family: 'Oswald', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -43,6 +43,8 @@ input {
 @import "components/Header";
 @import "components/Pageloader";
 @import "components/PwaModal";
+@import "components/Sheet";
+@import "components/Sticky";
 
 .hCenter {
   left: 50%;
