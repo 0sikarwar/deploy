@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import {setEntryPoint} from "../../actions/ui"
 import Store from "../../utils/store";
 import { resetLoginUser } from "../../actions/login";
 
@@ -16,7 +16,7 @@ const Header = (props) => {
     dispatch(resetLoginUser());
   };
   const handleEntriesClick = (type) => {
-    props.handleEntriesClick(type);
+    dispatch(setEntryPoint(type));
   };
   return (
     <div className="header">

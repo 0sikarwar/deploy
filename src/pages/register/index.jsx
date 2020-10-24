@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import { getRegisterUserSuccess } from "../../actions/register";
+import {setEntryPoint} from "../../actions/ui"
 import { checkMobileDevice, validatePassword } from "../../utils";
 import { registerUser } from "../../utils/userHelper";
 import Input from "../../components/input";
@@ -33,22 +33,11 @@ const RegisterPage = (props) => {
   const passwordRef = useRef(null);
 
   useEffect(() => {
-    let userData = null;
-    if (typeof Storage !== "undefined") {
-      userData = JSON.parse(sessionStorage.getItem("userData"));
-    }
-    const { email } = userData || {};
-    if (email) {
-      props.history.push("/");
-    }
-  }, [props.history]);
-
-  useEffect(() => {
     if (registerResp) {
       dispatch(getRegisterUserSuccess(registerResp));
-      props.history.push("/");
+      dispatch(setEntryPoint(null))
     }
-  }, [registerResp]);
+  }, [registerResp, dispatch]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -79,7 +68,7 @@ const RegisterPage = (props) => {
       lastName: false,
       loginId: !userDetails.loginId,
       password: !userDetails.password,
-      password2: userDetails.password !== userDetails.password2,
+      password2: !userDetails.password2 || userDetails.password !== userDetails.password2,
     });
     if (
       userDetails.firstName &&
@@ -107,7 +96,7 @@ const RegisterPage = (props) => {
           <div
             className="btn btn-link decoration-none c-pointer"
             onClick={() => {
-              props.changeEntryPoint("login");
+              dispatch(setEntryPoint("login"));
             }}
           >
             LogIn
@@ -153,7 +142,7 @@ const RegisterPage = (props) => {
             }
           />
           <Input
-            ref={passwordRef}
+            inputRef={passwordRef}
             label="Password"
             type="password"
             inputContainerClass="mb-16"
@@ -186,7 +175,7 @@ const RegisterPage = (props) => {
             <button className="btn btn-primary">Register</button>
             <div
               onClick={() => {
-                props.changeEntryPoint(null);
+                dispatch(setEntryPoint(null));
               }}
               className="btn btn-link decoration-none"
             >

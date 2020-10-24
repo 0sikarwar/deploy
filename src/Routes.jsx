@@ -15,15 +15,21 @@ const Routes = () => {
   const [verifiedUser, setVerifiedUser] = useState(false);
   useEffect(() => {
     let userData = null;
+    let userKey = null;
     if (typeof Storage !== "undefined") {
       userData = JSON.parse(sessionStorage.getItem("userData"));
+      userKey = sessionStorage.getItem("userKey");
     }
+    if(!userKey){
+      userKey = window.prompt("whats your key", "default");
+      typeof Storage !== "undefined" && sessionStorage.setItem("userKey", userKey)
+    }
+    setVerifiedUser(userKey === "2665");
     const { email } = userData || {};
     if (email) {
       dispatch(getLoginUserSuccess(userData));
     }
-    setVerifiedUser(window.prompt("whats your key", "default") === "2665");
-  }, []);
+  }, [dispatch]);
   return (
     <Switch>
       <Route

@@ -22,12 +22,12 @@ class SheetHeader extends PureComponent {
           {this.props.title}
         </p>
 
-        <a
+        <span
           onClick={this.props.secondaryActionClick}
           className="Sheet__secondaryAction"
         >
           {this.props.secondaryAction}
-        </a>
+        </span>
       </div>
     )
   }

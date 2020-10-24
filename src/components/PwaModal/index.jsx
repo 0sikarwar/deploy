@@ -27,17 +27,17 @@ const PwaModal = (props) => {
         </div>
           <div className="PwaModal__actions">
           {primaryButton &&
-            <a
+            <span
               className="PwaModal__action PwaModal__action--primary"
               onClick={_handlePrimaryAction}
             >
               {primaryButton}
-            </a>
+            </span>
           }
           {secondaryButton &&
-            <a className="PwaModal__action" onClick={_handleSecondaryAction}>
+            <span className="PwaModal__action" onClick={_handleSecondaryAction}>
               {secondaryButton}
-            </a>
+            </span>
           }
         </div> 
       </div>

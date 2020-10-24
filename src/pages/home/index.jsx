@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Store from "../../utils/store";
+import { setEntryPoint } from "../../actions/ui";
 import Header from "../../components/header";
 import Modal from "../../components/modal";
 import Sheet from "../../components/Sheet";
@@ -8,20 +9,17 @@ import Register from "../register";
 import { checkMobileDevice } from "../../utils";
 
 const Home = () => {
-  const [appStore] = useContext(Store);
-  const [entryPoint, setEntryPoint] = useState(null);
+  const [appStore, dispatch] = useContext(Store);
   const {
     user: { loginStatus, data: userDetails },
+    ui: { entryPoint },
   } = appStore;
-  const handleEntriesClick = (type) => {
-    setEntryPoint(type);
-  };
   const closeModal = () => {
-    setEntryPoint(null);
+    dispatch(setEntryPoint(null));
   };
   return (
     <>
-      <Header handleEntriesClick={handleEntriesClick} />
+      <Header />
       <div className="flex flex-center">
         <h1>
           Hello{" "}
@@ -30,24 +28,16 @@ const Home = () => {
             : "anonymous"}
         </h1>
       </div>
-      {entryPoint && (
-        (checkMobileDevice() ?
-        <Sheet onClose={closeModal} isOpen={true}>
-          {entryPoint === "login" ? (
-            <Login changeEntryPoint={handleEntriesClick} />
-          ) : (
-            <Register changeEntryPoint={handleEntriesClick} />
-          )}
-        </Sheet>
-        : 
-        <Modal onClose={closeModal}>
-          {entryPoint === "login" ? (
-            <Login changeEntryPoint={handleEntriesClick} />
-          ) : (
-            <Register changeEntryPoint={handleEntriesClick} />
-          )}
-        </Modal>)
-      )}
+      {entryPoint &&
+        (checkMobileDevice() ? (
+          <Sheet onClose={closeModal} isOpen={true}>
+            {entryPoint === "login" ? <Login /> : <Register />}
+          </Sheet>
+        ) : (
+          <Modal onClose={closeModal}>
+            {entryPoint === "login" ? <Login /> : <Register />}
+          </Modal>
+        ))}
     </>
   );
 };

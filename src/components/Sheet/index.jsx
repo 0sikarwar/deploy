@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Slide } from "../Animate";
 import elementClass from "element-class";
 
 import SheetHeader from "./SheetHeader";
@@ -36,15 +35,9 @@ const Sheet = (props) => {
   );
   if (props.enableAnimation) {
     return (
-      <Slide
-        in={props.isOpen}
-        timeout={{ enter: 300, exit: 300 }}
-        mountOnEnter={true}
-        unmountOnExit={true}
-        appear={true}
-      >
+      <div>
         {SheetHTML}
-      </Slide>
+      </div>
     );
   }
   if (props.isOpen) {

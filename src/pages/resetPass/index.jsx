@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
 import { validatePassword } from "../../utils";
 import { resetPass } from "../../utils/userHelper";
 import Input from "../../components/input";
@@ -9,6 +8,7 @@ import PwaModal from "../../components/PwaModal";
 import Overlay from "../../components/Overlay";
 import { path } from "../../utils";
 import Toast from "../../components/Toast";
+import {setEntryPoint} from "../../actions/ui"
 
 const ResetPass = (props) => {
   const [, dispatch] = useContext(Store);
@@ -25,7 +25,6 @@ const ResetPass = (props) => {
   });
   const [loading, setLoading] = useState(false);
   const [toastMsg, setToastMsg] = useState("");
-  const passwordRef = useRef(null);
 
   useEffect(() => {
     let userData = null;
@@ -82,6 +81,10 @@ const ResetPass = (props) => {
       );
     }
   };
+  const goToLogin = () => {
+    props.history.push("/");
+    dispatch(setEntryPoint("login"))
+  }
   return (
     <>
       {loading && <Pageloader className="o-70" />}
@@ -103,9 +106,7 @@ const ResetPass = (props) => {
           <PwaModal
             title={"Password changed"}
             type="success"
-            onPrimaryAction={() => {
-              props.history.push("/login");
-            }}
+            onPrimaryAction={goToLogin}
             primaryButton="OK"
             message={`Password changed Successfully Login now`}
           />
@@ -114,15 +115,14 @@ const ResetPass = (props) => {
       <div className="pr-16 pl-16 wt-90p hCenter p-relative max-wt-500">
         <div className="flex flex-middle flex-between">
           <h2>Reset Password</h2>
-          <Link to="/login" className="btn btn-link decoration-none">
+          <div onClick={goToLogin} className="btn btn-link decoration-none">
             {" "}
             LogIn
-          </Link>
+          </div>
         </div>
 
         <form name="form" onSubmit={handleSubmit}>
           <Input
-            ref={passwordRef}
             label="New Password"
             type="password"
             inputContainerClass="mb-16"
@@ -136,7 +136,6 @@ const ResetPass = (props) => {
             strengthPass={strengthPass}
           />
           <Input
-            ref={passwordRef}
             label="Confirm New Password"
             type="password"
             inputContainerClass="mb-16"

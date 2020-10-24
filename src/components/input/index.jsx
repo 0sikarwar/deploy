@@ -11,7 +11,7 @@ const Input = (props)=>{
 		onChange,
 		hasError,
 		errMsg,
-		ref,
+		inputRef,
 		onFocus,
 		hideStrengthBar,
 		strengthPass
@@ -26,7 +26,7 @@ const Input = (props)=>{
 				{label}
 			</label>
 			<input
-				ref={ref || null}
+				ref={inputRef || null}
 				type={type}
 				className={className}
 				name={name}
