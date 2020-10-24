@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import {setEntryPoint} from "../../actions/ui"
-import Store from "../../utils/store";
-import { resetLoginUser } from "../../actions/login";
+import {setEntryPoint} from "actions/ui"
+import Store from "utils/store";
+import { resetLoginUser } from "actions/login";
 
 const Header = (props) => {
   const [appStore, dispatch] = useContext(Store);

@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
-import { validatePassword } from "../../utils";
-import { resetPass } from "../../utils/userHelper";
-import Input from "../../components/input";
-import Store from "../../utils/store";
-import Pageloader from "../../components/pageloader";
-import PwaModal from "../../components/PwaModal";
-import Overlay from "../../components/Overlay";
-import { path } from "../../utils";
-import Toast from "../../components/Toast";
-import {setEntryPoint} from "../../actions/ui"
+import { validatePassword } from "utils";
+import { resetPass } from "utils/userHelper";
+import Input from "components/input";
+import Store from "utils/store";
+import Pageloader from "components/pageloader";
+import PwaModal from "components/PwaModal";
+import Overlay from "components/Overlay";
+import { path } from "utils";
+import Toast from "components/Toast";
+import {setEntryPoint} from "actions/ui"
 
 const ResetPass = (props) => {
   const [, dispatch] = useContext(Store);

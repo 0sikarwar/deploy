@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import { getRegisterUserSuccess } from "../../actions/register";
-import {setEntryPoint} from "../../actions/ui"
-import { checkMobileDevice, validatePassword } from "../../utils";
-import { registerUser } from "../../utils/userHelper";
-import Input from "../../components/input";
-import Store from "../../utils/store";
-import Pageloader from "../../components/pageloader";
-import Toast from "../../components/Toast";
+import { getRegisterUserSuccess } from "actions/register";
+import {setEntryPoint} from "actions/ui"
+import { checkMobileDevice, validatePassword } from "utils";
+import { registerUser } from "utils/userHelper";
+import Input from "components/input";
+import Store from "utils/store";
+import Pageloader from "components/pageloader";
+import Toast from "components/Toast";
 
 const RegisterPage = (props) => {
   const [, dispatch] = useContext(Store);

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import { normalizeSize } from '../../utils'
+import { normalizeSize } from 'utils'
 
 const Truncate = ({ children, className, width, as }) => {
   const classList = classNames('to-ellipsis o-hidden ws-nowrap', className)

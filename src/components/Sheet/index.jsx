@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import elementClass from "element-class";
 
 import SheetHeader from "./SheetHeader";
-import Sticky from "../Sticky";
+import Sticky from "components/Sticky";
 
 const Sheet = (props) => {
   useEffect(() => {

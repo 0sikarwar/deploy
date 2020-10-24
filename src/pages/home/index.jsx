@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import Store from "../../utils/store";
-import { setEntryPoint } from "../../actions/ui";
-import Header from "../../components/header";
-import Modal from "../../components/modal";
-import Sheet from "../../components/Sheet";
-import Login from "../login";
-import Register from "../register";
-import { checkMobileDevice } from "../../utils";
+import Store from "utils/store";
+import { setEntryPoint } from "actions/ui";
+import Header from "components/header";
+import Modal from "components/modal";
+import Sheet from "components/Sheet";
+import Login from "pages/login";
+import Register from "pages/register";
+import { checkMobileDevice } from "utils";
 
 const Home = () => {
   const [appStore, dispatch] = useContext(Store);

@@ -1,4 +1,4 @@
-import {SET_ENTRY_POINT} from "../actions/ui";
+import {SET_ENTRY_POINT} from "actions/ui";
 
 export default (state, action)=>{
     switch(action.type){

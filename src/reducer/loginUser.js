@@ -1,10 +1,10 @@
 import {
     GET_LOGIN_USER_SUCCESS,
     RESET_LOGIN_USER
-} from "../actions/login";
+} from "actions/login";
 import {
     GET_REGISTER_USER_SUCCESS,
-} from "../actions/register";
+} from "actions/register";
 export default (state, action) => {
     let newState;
     if (action.type === GET_LOGIN_USER_SUCCESS) {

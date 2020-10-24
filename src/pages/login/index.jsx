@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 
-import { resetLoginUser, getLoginUserSuccess } from "../../actions/login";
-import {setEntryPoint} from "../../actions/ui"
-import { loginUser, forgotPass } from "../../utils/userHelper";
-import Input from "../../components/input";
-import Pageloader from "../../components/pageloader";
-import Store from "../../utils/store";
-import PwaModal from "../../components/PwaModal";
-import Overlay from "../../components/Overlay";
-import Toast from "../../components/Toast";
+import { resetLoginUser, getLoginUserSuccess } from "actions/login";
+import {setEntryPoint} from "actions/ui"
+import { loginUser, forgotPass } from "utils/userHelper";
+import Input from "components/input";
+import Pageloader from "components/pageloader";
+import Store from "utils/store";
+import PwaModal from "components/PwaModal";
+import Overlay from "components/Overlay";
+import Toast from "components/Toast";
 
 const LoginPage = (props) => {
   const [, dispatch] = useContext(Store);
